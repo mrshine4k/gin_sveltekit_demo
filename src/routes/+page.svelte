@@ -1,13 +1,12 @@
 <script>
+    import { onMount } from "svelte";
     import Nav from "./Nav.svelte";
     import axios from "axios";
-    import { onMount } from "svelte";
-
-    //get albums on mount
-    let Albums = null;
-    onMount(() => {
-        Albums = axios.get("http://localhost:9000/albums");
+    let AlbumResponse = null;
+    onMount( () => {
+        AlbumResponse = axios.get("http://localhost:9000/albums");
     });
+    
 </script>
 
 <div class="card w-auto bg-base-200 overflow-hidden shadow-md p-0">
@@ -27,25 +26,30 @@
                         <th />
                         <th>Title</th>
                         <th>Artist</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
-                {#await Albums}
-                    <td colspan="3" align="center"><span class="loading loading-spinner loading-lg"></span></td>
+                {#await AlbumResponse}
+                    <td colspan="3" align="center">
+                        <span class="loading loading-spinner loading-lg" />
+                    </td>
                 {:then Albums}
                     {#if Albums?.data}
                         <tbody>
                             {#each Albums.data as album, i}
                                 <tr class="bg-base-200 hover">
                                     <td>{i + 1}</td>
-                                    <td>{album.title}</td>
-                                    <td>{album.artist}</td>
+                                    <td>{album.Title}</td>
+                                    <td>{album.Artist}</td>
+                                    <td>{album.Price}</td>
                                 </tr>
                             {/each}
                         </tbody>
                     {/if}
                 {:catch error}
-                    <td colspan="3" style="color: red;" align="center">{error.message}</td>
-
+                    <td colspan="3" style="color: red;" align="center"
+                        >{error.message}</td
+                    >
                 {/await}
             </table>
         </div>
