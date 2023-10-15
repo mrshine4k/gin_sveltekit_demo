@@ -1,4 +1,5 @@
-Hello, Ms4k demo gin backend + SvelteKit/Daisyui/Tailwindcss frontend using simple ui, and basic rest api
+Hello, This is my demo on using gin backend + SvelteKit/Daisyui/Tailwindcss frontend for simple ui, and basic rest api
+Purely for demonstration purposes.
 
 run the following commands to clone, install dependencies and run the project
 
@@ -9,10 +10,10 @@ npm install
 ```
 
 # Running the project
-
 ```
 npm start
 ```
+The start command runs both the backend and the frontend server at the same time, meant for preparation of hosting the app on separate services.
 
 # Running separate server for debugging
 
